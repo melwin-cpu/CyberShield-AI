@@ -1,0 +1,41 @@
+
+# Secrets - never upload
+.env
+.env.*
+!.env.example
+
+# Python environments and cache
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+
+# Local data and generated files
+uploads/
+quarantine/
+logs/
+reports/
+database/
+*.log
+
+# Large training datasets
+dataset/
+ember2018/
+models/ember_train_features.npy
+models/ember_train_labels.npy
+
+# Large model and backup files - handle separately for deployment
+models/ember_model_2018.txt
+models/*backup*
+models/*before_improvement*
+
+# Local test outputs
+phishing_dataset_validation_report.txt
+phishing_model_diagnostic_results.csv
+scanner_test.txt
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

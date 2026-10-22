@@ -1,0 +1,15 @@
+﻿customtkinter
+pillow
+numpy
+pandas
+scikit-learn
+joblib
+xgboost
+pefile
+requests
+python-dotenv
+reportlab
+tensorflow
+torch
+transformers>=4.41
+accelerate
