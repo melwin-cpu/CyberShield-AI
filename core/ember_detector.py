@@ -17,7 +17,7 @@ import ember
 
 # Project paths
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-MODEL_PATH = PROJECT_ROOT / "models" / "ember_model_2018.txt"
+MODEL_PATH = PROJECT_ROOT / "models" / "ember_lightgbm_custom.txt"
 
 _model = None
 _extractor = None
