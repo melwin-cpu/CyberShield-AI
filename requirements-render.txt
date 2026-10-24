@@ -1,0 +1,11 @@
+﻿fastapi
+uvicorn[standard]
+python-multipart
+numpy
+pandas
+scikit-learn
+joblib
+xgboost
+pefile
+requests
+lightgbm
