@@ -652,7 +652,7 @@ button, select { font: inherit; color: inherit; }
   showEmptyFeed();
 
   /* ---------- actual backend integration ---------- */
-  var API_BASE = "http://127.0.0.1:8000";
+  var API_BASE = "https://cybershield-ai-r9v3.onrender.com";
   var counts = { total:0, critical:0, high:0, medium:0, low:0, malware:0, phishing:0 };
   var history = [];
   function fmt(n){ return Number(n||0).toLocaleString(); }
@@ -735,13 +735,23 @@ button, select { font: inherit; color: inherit; }
     e.preventDefault(); var form=this, input=$("#malwareFile"), file=input.files[0]; if(!file){toast("Choose a file first");return;} if(file.size>25*1024*1024){toast("File exceeds the 25 MB limit");return;}
     setBusy(form,true,"Run Malware Ensemble"); $("#scanResult").textContent="Uploading file to local model API and analysing…";
     try{var fd=new FormData();fd.append("file",file);var response=await fetch(API_BASE+"/api/scan/malware",{method:"POST",body:fd});var data=await response.json();if(!response.ok)throw new Error(data.detail||"Malware scan failed");var item=recordResult("malware",file.name,data);renderResult(item);toast("Malware model prediction completed");}
-    catch(err){$("#scanResult").textContent="Scan failed: "+err.message+". Check that FastAPI is running at http://127.0.0.1:8000.";toast("Malware scan failed");}
-    finally{setBusy(form,false,"Run Malware Ensemble");}
+   
+    catch (err) {
+       $("#scanResult").textContent =
+           "Scan failed: " + err.message +
+           ". Check the CyberShield AI production backend connection.";
+
+       toast("Malware scan failed");
+    }
+    finally {
+        setBusy(form, false, "Run Malware Ensemble");
+    }
   });
+
   $("#phishingForm").addEventListener("submit",async function(e){
     e.preventDefault();var form=this,url=$("#phishingUrl").value.trim();if(!url)return;setBusy(form,true,"Run Phishing Model");$("#scanResult").textContent="Sending URL to the existing Random Forest model…";
     try{var response=await fetch(API_BASE+"/api/scan/phishing",{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify({url:url})});var data=await response.json();if(!response.ok)throw new Error(data.detail||"Phishing scan failed");var item=recordResult("phishing",url,data);renderResult(item);toast("Phishing model prediction completed");}
-    catch(err){$("#scanResult").textContent="Scan failed: "+err.message+". Check that FastAPI is running at http://127.0.0.1:8000.";toast("Phishing scan failed");}
+    catch(err){$("#scanResult").textContent="Scan failed: "+err.message+". Check the CyberShield AI production backend connection.";toast("Phishing scan failed");}
     finally{setBusy(form,false,"Run Phishing Model");}
   });
   function showDashboard(){ $(".board").style.display=""; $("#historyPage").classList.remove("active"); $("#endpointsPage").classList.remove("active"); $("#networkPage").classList.remove("active"); $("#cloudPage").classList.remove("active"); }
