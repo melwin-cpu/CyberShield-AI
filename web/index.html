@@ -513,7 +513,9 @@ button, select { font: inherit; color: inherit; }
       <div class="network-card"><span>CyberShield API</span><b id="netApi">Not checked</b></div>
     </div>
     <p class="network-note" id="networkUpdated">Press refresh to check the current browser network state.</p>
-    <p class="network-note">Note: browsers expose only limited network details. This page does not scan your Wi-Fi, router, open ports, or other devices. API status is checked against the local backend at http://127.0.0.1:8000/openapi.json.</p>
+<p class="network-note">
+  Note: browsers expose only limited network details. This page does not scan your Wi-Fi, router, open ports, or other devices. API status is checked against the production backend at https://cybershield-ai-r9v3.onrender.com/openapi.json.
+</p>
   </section>
   <section class="history-page" id="historyPage" aria-labelledby="historyTitle">
     <div class="history-head">
@@ -780,7 +782,7 @@ button, select { font: inherit; color: inherit; }
       log.push("CyberShield API: reachable at "+API_BASE);
     } catch(e) {
       $("#cloudApi").textContent="Unreachable";
-      log.push("CyberShield API: unreachable. Start the FastAPI backend at http://127.0.0.1:8000 and try again.");
+      log.push("CyberShield API: unreachable. Check the production backend connection and try again.");
     }
     $("#cloudProvider").textContent="Not configured";
     log.push("Cloud provider: no AWS/Azure/GCP integration is configured in this UI.");
