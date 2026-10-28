@@ -29,6 +29,9 @@ def load_ember_model():
 
     if _model is not None and _extractor is not None:
         return _model, _extractor
+    print(f"[EMBER DEBUG] Project root: {PROJECT_ROOT}")
+    print(f"[EMBER DEBUG] Model path: {MODEL_PATH}")
+    print(f"[EMBER DEBUG] Model exists: {MODEL_PATH.is_file()}")
 
     if not MODEL_PATH.is_file():
         raise FileNotFoundError(
