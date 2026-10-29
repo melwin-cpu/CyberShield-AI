@@ -17,3 +17,6 @@ torch
 transformers>=4.41
 accelerate
 tqdm
+lief
+lightgbm
+git+https://github.com/elastic/ember.git
