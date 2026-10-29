@@ -1,4 +1,7 @@
-﻿customtkinter
+﻿fastapi
+uvicorn
+python-multipart
+customtkinter
 pillow
 numpy
 pandas
